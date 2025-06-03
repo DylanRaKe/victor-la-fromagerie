@@ -21,30 +21,7 @@ export function ClientForm({ clientInfo, onClientInfoChange }: ClientFormProps) 
     return emailRegex.test(email)
   }
 
-  const validateForm = (info: InfoClient) => {
-    const newErrors: Partial<InfoClient> = {}
 
-    if (!info.nom.trim()) {
-      newErrors.nom = 'Le nom est requis'
-    }
-
-    if (!info.prenom.trim()) {
-      newErrors.prenom = 'Le prénom est requis'
-    }
-
-    if (!info.email.trim()) {
-      newErrors.email = 'L\'email est requis'
-    } else if (!validateEmail(info.email)) {
-      newErrors.email = 'Format d\'email invalide'
-    }
-
-    if (info.telephone && info.telephone.trim() && !/^[0-9\s\-\+\(\)]{10,}$/.test(info.telephone.replace(/\s/g, ''))) {
-      newErrors.telephone = 'Format de téléphone invalide'
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
 
   const handleInputChange = (field: keyof InfoClient, value: string) => {
     const updatedInfo = {
@@ -64,14 +41,7 @@ export function ClientForm({ clientInfo, onClientInfoChange }: ClientFormProps) 
     onClientInfoChange(updatedInfo)
   }
 
-  const isFormValid = () => {
-    if (!clientInfo) return false
-    return clientInfo.nom.trim() && 
-           clientInfo.prenom.trim() && 
-           clientInfo.email.trim() && 
-           validateEmail(clientInfo.email) &&
-           Object.keys(errors).length === 0
-  }
+
 
   return (
     <Card>
