@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Composants et Librairies - Victor la Fromagerie
+
+## 🔧 Principe Fondamental
+**TOUJOURS privilégier les librairies et frameworks existants** plutôt que de recréer des composants depuis zéro.
+
+## 📦 Librairies Recommandées
+
+### UI Components
+- **Shadcn/ui** : Composants React modernes et accessibles
+- **Radix UI** : Primitives UI headless pour composants custom
+- **Lucide React** : Icônes cohérentes et légères
+
+### Gestion d'État
+- **Zustand** : Store simple pour panier et état global
+- **React Hook Form** : Gestion des formulaires (coordonnées client)
+
+### Utilitaires
+- **date-fns** : Manipulation des dates pour créneaux
+- **clsx** : Gestion conditionnelle des classes CSS
+- **zod** : Validation des données TypeScript-first
+
+### Email & Notifications
+- **Resend** ou **EmailJS** : Envoi d'emails de confirmation
+- **React Hot Toast** : Notifications utilisateur
+
+## 🏗️ Structure des Composants
+```
+components/
+├── ui/                    # Composants UI de base (shadcn/ui)
+├── layout/               # Header, Footer, Navigation
+├── fromage/              # Composants liés aux fromages
+├── panier/               # Composants du panier
+├── admin/                # Composants backoffice
+└── forms/                # Formulaires réutilisables
+```
+
+## ✅ Bonnes Pratiques
+1. **Composition over Creation** : Combiner des librairies spécialisées
+2. **TypeScript strict** : Typage fort pour tous les props
+3. **Accessibilité** : Utiliser des composants accessibles (Radix UI)
+4. **Performance** : Lazy loading pour les pages non critiques
+5. **Responsive** : Mobile-first avec Tailwind
+
+## 🚫 À Éviter
+- Recréer des composants UI basiques (boutons, inputs, modals)
+- Réinventer la gestion des dates ou validation
+- Ignorer l'accessibilité
+- Composants monolithiques non réutilisables

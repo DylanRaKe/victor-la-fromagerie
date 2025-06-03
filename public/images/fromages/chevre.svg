@@ -1,0 +1,39 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Forme cylindrique du fromage de chèvre -->
+  <ellipse cx="100" cy="100" rx="70" ry="50" fill="#F8F8FF" stroke="#E6E6FA" stroke-width="3"/>
+  
+  <!-- Croûte cendrée -->
+  <ellipse cx="100" cy="100" rx="70" ry="50" fill="none" stroke="#D3D3D3" stroke-width="4"/>
+  
+  <!-- Texture cendrée -->
+  <ellipse cx="100" cy="100" rx="65" ry="45" fill="none" stroke="#C0C0C0" stroke-width="1" stroke-dasharray="3,2"/>
+  
+  <!-- Marques de cendre */}
+  <circle cx="80" cy="85" r="1.5" fill="#A9A9A9" opacity="0.7"/>
+  <circle cx="120" cy="90" r="1" fill="#A9A9A9" opacity="0.7"/>
+  <circle cx="90" cy="110" r="2" fill="#A9A9A9" opacity="0.7"/>
+  <circle cx="130" cy="115" r="1.5" fill="#A9A9A9" opacity="0.7"/>
+  <circle cx="70" cy="105" r="1" fill="#A9A9A9" opacity="0.7"/>
+  <circle cx="110" cy="75" r="1" fill="#A9A9A9" opacity="0.7"/>
+  
+  <!-- Texture de surface */}
+  <path d="M 50 90 Q 100 85 150 90" fill="none" stroke="#F0F0F0" stroke-width="1" opacity="0.8"/>
+  <path d="M 45 100 Q 100 95 155 100" fill="none" stroke="#F0F0F0" stroke-width="1" opacity="0.8"/>
+  <path d="M 50 110 Q 100 105 150 110" fill="none" stroke="#F0F0F0" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Petites aspérités -->}
+  <circle cx="65" cy="80" r="0.5" fill="#E6E6FA"/>
+  <circle cx="135" cy="85" r="0.5" fill="#E6E6FA"/>
+  <circle cx="75" cy="120" r="0.5" fill="#E6E6FA"/>
+  <circle cx="125" cy="125" r="0.5" fill="#E6E6FA"/>
+  
+  <!-- Ombrage */}
+  <ellipse cx="100" cy="100" rx="70" ry="50" fill="url(#greyGradient)" opacity="0.2"/>
+  
+  <defs>
+    <radialGradient id="greyGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#696969" stop-opacity="0.1"/>
+    </radialGradient>
+  </defs>
+</svg> 

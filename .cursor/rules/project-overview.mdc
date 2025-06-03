@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Victor la Fromagerie - Règles du Projet
+
+## 🎯 Objectif du Projet
+Créer un site Click & Collect simple et élégant pour permettre aux clients de commander des fromages en ligne et de choisir un créneau pour récupérer leur commande.
+
+## 🎨 Identité Visuelle
+- **Background** : `#4D6572`
+- **Primary** : Blanc cassé (`#FEFEFE` ou `#F8F8F8`)
+- **Accent** : Jaune poussin léger (`#FFF8DC` ou `#FFFACD`)
+
+## 🏗️ Architecture Technique
+- **Framework** : Next.js 15 avec App Router
+- **Styling** : Tailwind CSS 4
+- **TypeScript** : Obligatoire pour tous les composants
+- **Structure** : Pages dans `app/` selon la convention Next.js
+
+## 📁 Structure des Pages
+```
+app/
+├── page.tsx                    # Landing Page
+├── fromages/
+│   ├── page.tsx               # Liste des fromages
+│   └── [id]/page.tsx          # Détail fromage
+├── panier/
+│   └── page.tsx               # Shopping List
+├── confirmation/
+│   └── page.tsx               # Page confirmation
+├── admin/
+│   └── page.tsx               # Backoffice
+└── legal/
+    ├── mentions/page.tsx      # Mentions légales
+    ├── rgpd/page.tsx         # Politique RGPD
+    └── cookies/page.tsx      # Politique cookies
+```
+
+## 🎨 Conventions de Style
+- Utiliser les couleurs définies dans `globals.css` ou variables CSS
+- Composants réutilisables dans `components/`
+- Design mobile-first avec Tailwind
+- Interface épurée et élégante

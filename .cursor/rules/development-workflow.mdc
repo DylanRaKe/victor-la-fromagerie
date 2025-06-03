@@ -1,0 +1,92 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Workflow de Développement - Victor la Fromagerie
+
+## 🚀 Ordre de Développement Recommandé
+
+### Phase 1 : Fondations
+1. **Configuration Tailwind** : Variables CSS pour couleurs
+2. **Types TypeScript** : Modèles de données dans `types/`
+3. **Store Zustand** : État global du panier
+4. **Composants UI de base** : Installation Shadcn/ui
+
+### Phase 2 : Pages Core
+1. **Layout principal** : Header avec navigation et panier
+2. **Landing Page** : Page d'accueil avec hero section
+3. **Liste fromages** : Grille avec filtres basiques
+4. **Détail fromage** : Page produit avec ajout panier
+
+### Phase 3 : Fonctionnalités Avancées
+1. **Panier complet** : Récapitulatif + sélection créneau
+2. **Formulaire client** : Validation avec React Hook Form + Zod
+3. **Confirmation** : Page de remerciement
+4. **Email** : Intégration service d'envoi
+
+### Phase 4 : Administration
+1. **Interface admin** : Liste et gestion des commandes
+2. **Authentification simple** : Protection de l'admin
+3. **Statistiques** : Dashboard basique
+
+### Phase 5 : Finitions
+1. **Pages légales** : Mentions, RGPD, cookies
+2. **Optimisations** : Performance et SEO
+3. **Tests** : Validation fonctionnelle
+
+## 📋 Checklist par Feature
+
+### ✅ Avant de commencer une page
+- [ ] Types TypeScript définis
+- [ ] Composants UI identifiés
+- [ ] Librairies nécessaires installées
+- [ ] Structure de dossiers créée
+
+### ✅ Avant de merger
+- [ ] Page responsive (mobile + desktop)
+- [ ] Couleurs de la charte respectées
+- [ ] TypeScript sans erreurs
+- [ ] Navigation fonctionnelle
+- [ ] Accessibilité basique (alt, labels)
+
+## 🛠️ Commandes Utiles
+
+### Installation des dépendances principales
+```bash
+npm install zustand react-hook-form @hookform/resolvers zod
+npm install date-fns clsx lucide-react
+npm install @radix-ui/react-dialog @radix-ui/react-select
+```
+
+### Shadcn/ui setup
+```bash
+npx shadcn@latest init
+npx shadcn@latest add button card input label
+```
+
+## 📁 Organisation des Fichiers
+```
+app/
+├── globals.css              # Variables CSS + Tailwind
+├── layout.tsx              # Layout principal
+├── page.tsx                # Landing page
+├── components/             # Composants réutilisables
+├── lib/                    # Utilitaires et stores
+├── types/                  # Types TypeScript
+└── data/                   # Données mock/statiques
+```
+
+## 🎯 Priorités de Développement
+1. **Fonctionnel avant esthétique** : UX avant UI
+2. **Mobile-first** : Responsive dès le début
+3. **TypeScript strict** : Pas de `any`
+4. **Composants réutilisables** : DRY principle
+5. **Performance** : Lazy loading et optimisations
+
+## 🚫 À Éviter
+- Développer desktop-only puis adapter mobile
+- Créer des composants trop spécifiques
+- Ignorer l'accessibilité
+- Commit sans tests fonctionnels
+- Hardcoder des valeurs (utiliser des constantes)

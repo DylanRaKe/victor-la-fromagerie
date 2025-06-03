@@ -1,0 +1,93 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Spécifications des Pages - Victor la Fromagerie
+
+## 🏠 Landing Page (`app/page.tsx`)
+### Contenu
+- **Hero Section** : Titre "Victor la Fromagerie" + slogan
+- **Produits Phares** : 3-4 fromages mis en avant
+- **CTA Principal** : "Découvrir nos fromages" → `/fromages`
+- **Informations** : Horaires, adresse, concept Click & Collect
+
+### Composants
+- `HeroSection`
+- `ProduitsPhares`
+- `InfosPratiques`
+
+## 🧀 Liste des Fromages (`app/fromages/page.tsx`)
+### Fonctionnalités
+- **Grille responsive** : Cards fromages avec image, nom, prix
+- **Filtres** : Par type, lait, prix
+- **Recherche** : Barre de recherche simple
+- **Ajout panier** : Bouton direct depuis la liste
+
+### Composants
+- `FromageGrid`
+- `FromageCard`
+- `FilterBar`
+- `SearchInput`
+
+## 📄 Détail Fromage (`app/fromages/[id]/page.tsx`)
+### Contenu
+- **Image grande** : Photo du fromage
+- **Informations** : Description, prix, poids, type, lait
+- **Disponibilité** : Stock et statut
+- **Actions** : Sélecteur quantité + Ajouter au panier
+
+### Composants
+- `FromageDetail`
+- `QuantitySelector`
+- `AddToCartButton`
+
+## 🛒 Shopping List (`app/panier/page.tsx`)
+### Sections
+1. **Récapitulatif** : Liste des fromages + quantités + total
+2. **Sélection créneau** : Calendrier + créneaux disponibles
+3. **Coordonnées** : Formulaire nom, prénom, email
+4. **Validation** : Bouton confirmer commande
+
+### Composants
+- `PanierRecap`
+- `CreneauSelector`
+- `ClientForm`
+- `CommandeValidation`
+
+## ✅ Confirmation (`app/confirmation/page.tsx`)
+### Contenu
+- **Message remerciement**
+- **Récapitulatif commande** : Fromages, créneau, total
+- **Instructions** : Modalités de retrait
+- **Email confirmation** : Mention envoi automatique
+
+## 👨‍💼 Admin (`app/admin/page.tsx`)
+### Fonctionnalités
+- **Liste commandes** : Tableau avec filtres par date/statut
+- **Détail commande** : Modal avec toutes les infos
+- **Actions** : Marquer "Préparée" ou "Retirée"
+- **Statistiques** : Commandes du jour, CA
+
+### Composants
+- `CommandesList`
+- `CommandeDetail`
+- `StatutButton`
+- `AdminStats`
+
+## 📋 Pages Légales
+### Structure commune
+- **Layout simple** : Titre + contenu texte
+- **Navigation** : Retour accueil
+- **Responsive** : Lecture confortable mobile
+
+### Pages
+- `app/legal/mentions/page.tsx`
+- `app/legal/rgpd/page.tsx`
+- `app/legal/cookies/page.tsx`
+
+## 🎨 Conventions UI
+- **Couleurs** : Respecter la charte (#4D6572, blanc cassé, jaune poussin)
+- **Typography** : Hiérarchie claire H1/H2/H3
+- **Spacing** : Utiliser les classes Tailwind cohérentes
+- **Mobile-first** : Toutes les pages responsive

@@ -1,0 +1,109 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Modèles de Données - Victor la Fromagerie
+
+## 📊 Types TypeScript Principaux
+
+### Fromage
+```typescript
+interface Fromage {
+  id: string
+  nom: string
+  description: string
+  prix: number
+  poids: number
+  type: TypeFromage
+  lait: TypeLait
+  image: string
+  disponible: boolean
+  stock?: number
+}
+
+enum TypeFromage {
+  PATE_MOLLE = 'pate_molle',
+  PATE_DURE = 'pate_dure',
+  CHEVRE = 'chevre',
+  BLEU = 'bleu'
+}
+
+enum TypeLait {
+  VACHE = 'vache',
+  CHEVRE = 'chevre',
+  BREBIS = 'brebis'
+}
+```
+
+### Commande
+```typescript
+interface Commande {
+  id: string
+  items: ItemCommande[]
+  client: InfoClient
+  creneauRetrait: CreneauRetrait
+  statut: StatutCommande
+  dateCreation: Date
+  total: number
+}
+
+interface ItemCommande {
+  fromage: Fromage
+  quantite: number
+  prixUnitaire: number
+}
+
+interface InfoClient {
+  nom: string
+  prenom: string
+  email: string
+  telephone?: string
+}
+
+interface CreneauRetrait {
+  date: Date
+  heureDebut: string
+  heureFin: string
+}
+
+enum StatutCommande {
+  EN_ATTENTE = 'en_attente',
+  PREPAREE = 'preparee',
+  RETIREE = 'retiree',
+  ANNULEE = 'annulee'
+}
+```
+
+## 🗂️ Organisation des Types
+```
+types/
+├── fromage.ts           # Types liés aux fromages
+├── commande.ts          # Types de commandes
+├── client.ts            # Types client
+├── admin.ts             # Types backoffice
+└── index.ts             # Exports centralisés
+```
+
+## 💾 Stockage des Données
+- **Développement** : JSON local ou localStorage
+- **Production** : Base de données simple (SQLite/PostgreSQL)
+- **Images** : Dossier `public/images/fromages/`
+
+## 🔄 État Global (Zustand)
+```typescript
+interface StoreState {
+  panier: ItemCommande[]
+  ajouterAuPanier: (fromage: Fromage, quantite: number) => void
+  retirerDuPanier: (fromageId: string) => void
+  viderPanier: () => void
+  calculerTotal: () => number
+}
+```
+
+## ✅ Conventions
+- Utiliser des **enums** pour les valeurs fixes
+- **Interfaces** plutôt que types pour les objets
+- **Validation Zod** pour les données utilisateur
+- **IDs uniques** (UUID ou nanoid)
+- **Dates ISO** pour la sérialisation
