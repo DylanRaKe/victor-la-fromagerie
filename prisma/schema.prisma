@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Fromage {
+  id          String  @id @default(cuid())
+  nom         String
+  description String
+  prix        Float
+  poids       Float
+  type        String  // TypeFromage enum as string
+  lait        String  // TypeLait enum as string
+  image       String
+  disponible  Boolean @default(true)
+  stock       Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  itemsCommande ItemCommande[]
+  
+  @@map("fromages")
+}
+
+model Commande {
+  id            String   @id @default(cuid())
+  clientNom     String
+  clientPrenom  String
+  clientEmail   String
+  clientTelephone String?
+  retraitDate   DateTime
+  retraitHeureDebut String
+  retraitHeureFin   String
+  statut        String   // StatutCommande enum as string
+  dateCreation  DateTime @default(now())
+  total         Float
+  
+  // Relations
+  items         ItemCommande[]
+  
+  @@map("commandes")
+}
+
+model ItemCommande {
+  id            String  @id @default(cuid())
+  quantite      Int
+  prixUnitaire  Float
+  
+  // Relations
+  fromage       Fromage @relation(fields: [fromageId], references: [id], onDelete: Cascade)
+  fromageId     String
+  commande      Commande @relation(fields: [commandeId], references: [id], onDelete: Cascade)
+  commandeId    String
+  
+  @@map("items_commande")
+}

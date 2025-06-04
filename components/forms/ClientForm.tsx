@@ -25,6 +25,10 @@ export function ClientForm({ clientInfo, onClientInfoChange }: ClientFormProps) 
 
   const handleInputChange = (field: keyof InfoClient, value: string) => {
     const updatedInfo = {
+      nom: '',
+      prenom: '',
+      email: '',
+      telephone: '',
       ...clientInfo,
       [field]: value
     } as InfoClient

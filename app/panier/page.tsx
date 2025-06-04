@@ -22,21 +22,40 @@ export default function PanierPage() {
     return items.length > 0 &&
            selectedCreneau &&
            clientInfo &&
-           clientInfo.nom.trim() &&
-           clientInfo.prenom.trim() &&
-           clientInfo.email.trim() &&
-           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientInfo.email)
+           clientInfo.nom?.trim() &&
+           clientInfo.prenom?.trim() &&
+           clientInfo.email?.trim() &&
+           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientInfo.email || '')
   }
 
   const handleSubmitOrder = async () => {
-    if (!isFormComplete()) return
+    if (!isFormComplete() || !selectedCreneau || !clientInfo) return
 
     setIsSubmitting(true)
 
     try {
-      // Ici on simule l'envoi de la commande
-      // Dans un vrai projet, on ferait un appel API
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Créer la commande via l'API
+      const commandeData = {
+        client: clientInfo,
+        creneauRetrait: selectedCreneau,
+        items: items.map(item => ({
+          fromageId: item.fromage.id,
+          quantite: item.quantite,
+          prixUnitaire: item.fromage.prix
+        }))
+      }
+
+      const response = await fetch('/api/commandes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(commandeData)
+      })
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la création de la commande')
+      }
 
       // Vider le panier
       viderPanier()
@@ -159,9 +178,9 @@ export default function PanierPage() {
               {!isFormComplete() && (
                 <div className="mt-3 text-sm text-muted-foreground">
                   {!selectedCreneau && <p>• Sélectionnez un créneau de retrait</p>}
-                  {!clientInfo?.nom && <p>• Renseignez votre nom</p>}
-                  {!clientInfo?.prenom && <p>• Renseignez votre prénom</p>}
-                  {!clientInfo?.email && <p>• Renseignez votre email</p>}
+                  {!clientInfo?.nom?.trim() && <p>• Renseignez votre nom</p>}
+                  {!clientInfo?.prenom?.trim() && <p>• Renseignez votre prénom</p>}
+                  {!clientInfo?.email?.trim() && <p>• Renseignez votre email</p>}
                   {clientInfo?.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientInfo.email) && (
                     <p>• Format d&apos;email invalide</p>
                   )}

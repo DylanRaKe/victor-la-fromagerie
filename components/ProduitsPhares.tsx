@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { FromageCard } from '@/components/fromage/FromageCard'
-import { fromagesPhares } from '@/data/fromages'
+import { FromageService } from '@/lib/services/fromage.service'
 import { Star, ArrowRight, Crown, Sparkles, Award } from 'lucide-react'
 
-export function ProduitsPhares() {
+export async function ProduitsPhares() {
+  const fromagesPhares = await FromageService.getFeatured()
   return (
     <section id="produits-phares" className="py-20 relative overflow-hidden" style={{
       background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fde68a 100%)'
