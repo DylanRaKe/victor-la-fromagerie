@@ -65,8 +65,9 @@ export function CommandesAdmin({ commandes, onCommandesChange }: CommandesAdminP
     }
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('fr-FR', {
+  const formatDate = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date
+    return dateObj.toLocaleDateString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
@@ -147,7 +148,7 @@ export function CommandesAdmin({ commandes, onCommandesChange }: CommandesAdminP
                     <strong>Téléphone:</strong> {commande.client.telephone || 'Non renseigné'}
                   </p>
                   <p className="text-sm text-gray-600">
-                    <strong>Créée le:</strong> {formatDate(commande.createdAt)}
+                    <strong>Créée le:</strong> {formatDate(commande.dateCreation)}
                   </p>
                 </div>
                 <div>

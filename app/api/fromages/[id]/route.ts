@@ -3,10 +3,11 @@ import { FromageService } from '@/lib/services/fromage.service'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const fromage = await FromageService.getById(params.id)
+    const { id } = await params
+    const fromage = await FromageService.getById(id)
     if (!fromage) {
       return NextResponse.json(
         { error: 'Fromage non trouvé' },
@@ -25,11 +26,12 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const data = await request.json()
-    const fromage = await FromageService.update(params.id, data)
+    const fromage = await FromageService.update(id, data)
     if (!fromage) {
       return NextResponse.json(
         { error: 'Fromage non trouvé' },
@@ -48,10 +50,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const success = await FromageService.delete(params.id)
+    const { id } = await params
+    const success = await FromageService.delete(id)
     if (!success) {
       return NextResponse.json(
         { error: 'Fromage non trouvé' },
